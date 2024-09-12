@@ -378,8 +378,8 @@ class Test_1d(GradedTestCase):
     source_padded = model.vocab.src.to_input_tensor(src_sents, device=model.device)
 
     # Load Outputs
-    enc_hiddens_target = torch.load('./sanity_check_en_es_data/enc_hiddens.pkl')
-    dec_init_state_target = torch.load('./sanity_check_en_es_data/dec_init_state.pkl')
+    enc_hiddens_target = torch.load('./sanity_check_en_es_data/enc_hiddens.pkl', weights_only=True)
+    dec_init_state_target = torch.load('./sanity_check_en_es_data/dec_init_state.pkl', weights_only=True)
 
     # Test
     with torch.no_grad():
@@ -445,21 +445,21 @@ class Test_1e(GradedTestCase):
   def test_0(self):
     """1e-0-basic:  Sanity check for Decode.  Compares student output to that of model with dummy data."""
     # Load Inputs
-    dec_init_state = torch.load('./sanity_check_en_es_data/dec_init_state.pkl')
-    enc_hiddens = torch.load('./sanity_check_en_es_data/enc_hiddens.pkl')
-    enc_masks = torch.load('./sanity_check_en_es_data/enc_masks.pkl')
-    target_padded = torch.load('./sanity_check_en_es_data/target_padded.pkl')
+    dec_init_state = torch.load('./sanity_check_en_es_data/dec_init_state.pkl', weights_only=True)
+    enc_hiddens = torch.load('./sanity_check_en_es_data/enc_hiddens.pkl', weights_only=True)
+    enc_masks = torch.load('./sanity_check_en_es_data/enc_masks.pkl', weights_only=True)
+    target_padded = torch.load('./sanity_check_en_es_data/target_padded.pkl', weights_only=True)
 
     # Load Outputs
-    combined_outputs_target = torch.load('./sanity_check_en_es_data/combined_outputs.pkl')
+    combined_outputs_target = torch.load('./sanity_check_en_es_data/combined_outputs.pkl', weights_only=True)
 
     # Configure for Testing
     reinitialize_layers(self.model)
     COUNTER = [0]
 
     def stepFunction(Ybar_t, dec_state, enc_hiddens, enc_hiddens_proj, enc_masks):
-      dec_state = torch.load('./sanity_check_en_es_data/step_dec_state_{}.pkl'.format(COUNTER[0]))
-      o_t = torch.load('./sanity_check_en_es_data/step_o_t_{}.pkl'.format(COUNTER[0]))
+      dec_state = torch.load('./sanity_check_en_es_data/step_dec_state_{}.pkl'.format(COUNTER[0]), weights_only=True)
+      o_t = torch.load('./sanity_check_en_es_data/step_o_t_{}.pkl'.format(COUNTER[0]), weights_only=True)
       COUNTER[0] += 1
       return dec_state, o_t, None
 
@@ -614,16 +614,16 @@ class Test_1f(GradedTestCase):
 
     reinitialize_layers(self.model)
     # Inputs
-    Ybar_t = torch.load('./sanity_check_en_es_data/Ybar_t.pkl')
-    dec_init_state = torch.load('./sanity_check_en_es_data/dec_init_state.pkl')
-    enc_hiddens = torch.load('./sanity_check_en_es_data/enc_hiddens.pkl')
-    enc_masks = torch.load('./sanity_check_en_es_data/enc_masks.pkl')
-    enc_hiddens_proj = torch.load('./sanity_check_en_es_data/enc_hiddens_proj.pkl')
+    Ybar_t = torch.load('./sanity_check_en_es_data/Ybar_t.pkl', weights_only=True)
+    dec_init_state = torch.load('./sanity_check_en_es_data/dec_init_state.pkl', weights_only=True)
+    enc_hiddens = torch.load('./sanity_check_en_es_data/enc_hiddens.pkl', weights_only=True)
+    enc_masks = torch.load('./sanity_check_en_es_data/enc_masks.pkl', weights_only=True)
+    enc_hiddens_proj = torch.load('./sanity_check_en_es_data/enc_hiddens_proj.pkl', weights_only=True)
 
     # Output
-    dec_state_target = torch.load('./sanity_check_en_es_data/dec_state.pkl')
-    o_t_target = torch.load('./sanity_check_en_es_data/o_t.pkl')
-    e_t_target = torch.load('./sanity_check_en_es_data/e_t.pkl')
+    dec_state_target = torch.load('./sanity_check_en_es_data/dec_state.pkl', weights_only=True)
+    o_t_target = torch.load('./sanity_check_en_es_data/o_t.pkl', weights_only=True)
+    e_t_target = torch.load('./sanity_check_en_es_data/e_t.pkl', weights_only=True)
 
     # Run Tests
     with torch.no_grad():
