@@ -138,7 +138,9 @@ $ conda activate XCS224N_CUDA
 
 \textbf{Deliverables}
 
-For this assignment, please submit all files within the |src/submission| subdirectory.  This includes:
+For this assignment, please submit all files within the |src/submission| subdirectory. Update files \textbf{without directory structure}.
+
+This includes:
 \begin{itemize}
     \item |src/submission/__init__.py|
     \item |src/submission/model_embeddings.py|
@@ -146,3 +148,10 @@ For this assignment, please submit all files within the |src/submission| subdire
     \item |src/submission/utils.py|
     \item |src/submission/test_outputs.txt|
 \end{itemize}   
+
+We provide a script \texttt{src/collect\_submission.sh} to collect these files and create a zip file for submission. You can run the script on Linux/Mac/Windows(using Git Bash), then submit the zip file to the assignment.
+
+\begin{lstlisting}[language=bash]
+    cd src
+    bash ./collect_submission.sh
+\end{lstlisting}
